@@ -20,6 +20,7 @@ public class EmployeePayrollServiceTest {
 
         EmployeePayrollService employeePayrollService = new EmployeePayrollService(Arrays.asList(arraysOfEmp));
         employeePayrollService.writeEmpPayrollData(EmployeePayrollService.IOService.FILE_IO);
+        employeePayrollService.printData(EmployeePayrollService.IOService.FILE_IO);
 
         EmployeePayrollFileIOService obj = new EmployeePayrollFileIOService();
         long entries = obj.entries();
