@@ -1,5 +1,6 @@
 package com.bridgelabz.employeepayroll;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 /*
  *Author: Prasad
- * Create an Employee Payroll Service to Read and Write Employee Payroll to a Console
+ *Ability for Employee Payroll Service to print the Employee Payrolls
  */
 public class EmployeePayrollService {
     public enum IOService {
@@ -58,5 +59,17 @@ public class EmployeePayrollService {
         else if (ioService.equals(IOService.FILE_IO)){
             new EmployeePayrollFileIOService().writeData(employeePayrollList);
         }
+    }
+
+    public void printData(IOService fileIo) throws IOException {
+        if(fileIo.equals(IOService.FILE_IO)) new EmployeePayrollFileIOService().printData();
+    }
+
+    /*
+     *Return number of entries
+     */
+    public long countEntries(IOService fileIo) throws IOException {
+        if(fileIo.equals(IOService.FILE_IO)) return new EmployeePayrollFileIOService().entries();
+        return 0;
     }
 }

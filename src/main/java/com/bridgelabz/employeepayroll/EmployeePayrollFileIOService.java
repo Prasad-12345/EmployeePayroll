@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 import java.util.List;
 /*
  *Author: Prasad
- *Create an Employee Payroll Service to store Employee Payroll into a File
+ *Ability for Employee Payroll Service to print the Employee Payrolls
  */
 public class EmployeePayrollFileIOService {
     public static String fileName = "payroll_service.txt";
@@ -33,5 +33,12 @@ public class EmployeePayrollFileIOService {
      */
     public long entries() throws IOException {
         return Files.lines(Paths.get(fileName)).count();
+    }
+
+    /*
+     *Method to print details of employee
+     */
+    public void printData() throws IOException {
+        Files.lines(Paths.get(fileName)).forEach(System.out::println);
     }
 }
