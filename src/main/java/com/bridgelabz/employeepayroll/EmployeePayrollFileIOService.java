@@ -3,10 +3,11 @@ package com.bridgelabz.employeepayroll;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 /*
  *Author: Prasad
- *Ability for Employee Payroll Service to print the Employee Payrolls
+ *Ability for Employee Payroll Service to read the Employee Payroll File so that some analysis can be performed
  */
 public class EmployeePayrollFileIOService {
     public static String fileName = "payroll_service.txt";
@@ -40,5 +41,22 @@ public class EmployeePayrollFileIOService {
      */
     public void printData() throws IOException {
         Files.lines(Paths.get(fileName)).forEach(System.out::println);
+    }
+
+    /*
+     *Method to read data from file
+     */
+    public List<String> readDataFromFile(){
+        List<String> employeePayrollList = new ArrayList<>();
+
+        try{
+            Files.lines(Paths.get(fileName)).map(employee -> employee.trim()).forEach(
+                    employee -> { System.out.println(employee);
+                    employeePayrollList.add(employee);
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return employeePayrollList;
     }
 }

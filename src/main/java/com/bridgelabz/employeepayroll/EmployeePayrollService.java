@@ -1,16 +1,13 @@
 package com.bridgelabz.employeepayroll;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.Driver;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 /*
  *Author: Prasad
- *Ability for Employee Payroll Service to print the Employee Payrolls
+ *Ability for Employee Payroll Service to read the Employee Payroll File so that some analysis can be performed
  */
 public class EmployeePayrollService {
     public enum IOService {
@@ -71,5 +68,13 @@ public class EmployeePayrollService {
     public long countEntries(IOService fileIo) throws IOException {
         if(fileIo.equals(IOService.FILE_IO)) return new EmployeePayrollFileIOService().entries();
         return 0;
+    }
+
+    public long readDataFromFile(IOService fileIo){
+        List<String> employeePayrollFromFile = new ArrayList<>();
+        if(fileIo.equals(IOService.FILE_IO)) {
+            employeePayrollFromFile = new EmployeePayrollFileIOService().readDataFromFile();
+        }
+        return employeePayrollFromFile.size();
     }
 }
